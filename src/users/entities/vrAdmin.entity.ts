@@ -7,6 +7,6 @@ export class vrAdmin {
     id: number;
     @Column()
     username: string;
-    @OneToOne(() => User, (user) => user.nptcAdmin)
+    @OneToOne(() => User, (user) => user.vrAdmin)
     user: User;
 }

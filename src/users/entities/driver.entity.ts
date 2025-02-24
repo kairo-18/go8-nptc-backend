@@ -30,6 +30,6 @@ export class driver {
     @Column()
     BIR_clearance: string;
 
-    @OneToOne(() => User, (user) => user.nptcAdmin)
+    @OneToOne(() => User, (user) => user.driver)
     user: User;
 }

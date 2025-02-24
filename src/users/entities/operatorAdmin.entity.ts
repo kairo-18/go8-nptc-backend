@@ -9,6 +9,6 @@ export class operatorAdmin {
     @Column()
     username: string;
 
-    @OneToOne(() => User, (user) => user.nptcAdmin)
+    @OneToOne(() => User, (user) => user.operatorAdmin)
     user: User;
 }           
