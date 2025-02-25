@@ -12,5 +12,6 @@ import { vrAdmin } from './entities/vrAdmin.entity';
   imports: [TypeOrmModule.forFeature([User, nptcAdmin, vrAdmin, operatorAdmin, driver])],
   controllers: [UsersController],
   providers: [UsersService],
+  exports:[UsersService]
 })
 export class UsersModule {}

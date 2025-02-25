@@ -43,6 +43,30 @@ export class UsersService {
     return user || undefined;
   }
 
+  
+  async findByUsername(username: string): Promise<User | null> {
+
+    const user = await this.usersRepository
+        .createQueryBuilder("user")
+        .leftJoinAndSelect("user.nptcAdmin", "nptcAdmin")
+        .leftJoinAndSelect("user.vrAdmin", "vrAdmin")
+        .leftJoinAndSelect("user.operatorAdmin", "operatorAdmin")
+        .leftJoinAndSelect("user.driver", "driver")
+        .where("nptcAdmin.username = :username", { username })
+        .orWhere("vrAdmin.username = :username", { username })
+        .orWhere("operatorAdmin.username = :username", { username })
+        .orWhere("driver.username = :username", { username })
+        .getOne();
+
+    if (!user) console.log("User not found in DB");
+
+    return user;
+}
+
+
+
+
+
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User | null> {
     const user = await this.usersRepository.findOne({ where: { id } });
   
